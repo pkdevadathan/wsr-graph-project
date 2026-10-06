@@ -41,7 +41,7 @@ def add_pending_slide(
             "Summary",
             "Current Status",
             "Eval Closure date",
-            "Support Required",
+            "Remarks",
         ]
     else:
         headers = [
@@ -50,7 +50,7 @@ def add_pending_slide(
             "Summary",
             "Current Status",
             "Impl Closure Date",
-            "Support Required",
+            "Remarks",
         ]
     widths = [0.58, 0.9, 3.4, 1.85, 1.45, 3.0]
 
@@ -69,7 +69,7 @@ def add_pending_slide(
                 item["summary"],
                 item["status"],
                 item["closure_date"],
-                item["support"],
+                item["remarks"],
             ]
             for i, item in enumerate(chunk)
         ]

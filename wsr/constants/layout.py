@@ -4,11 +4,15 @@ LAYOUT_OPENING = 13
 LAYOUT_CONTENT = 3
 LAYOUT_BLANK = 1
 
+# Slide 4 charts sit between the title and the master footer line (y = 6.81 in).
+# Height drives the size so the PNG keeps its aspect ratio; width is the max
+# allowed and charts are centred inside [DCR_CHART_LEFT, DCR_CHART_LEFT + DCR_CHART_WIDTH].
 DCR_CHART_LEFT = 0.04
 DCR_CHART_WIDTH = 11.05
 DCR_EVAL_TOP = 0.70
-DCR_CHART_HEIGHT = 3.38
-DCR_IMPL_TOP = 4.12
+DCR_CHART_HEIGHT = 2.98
+DCR_IMPL_TOP = 3.72
+DCR_CHART_BOTTOM_LIMIT = 6.76
 DCR_PANEL_LEFT = 11.18
 DCR_PANEL_WIDTH = 2.00
 DCR_SUMMARY_TOP = 0.70

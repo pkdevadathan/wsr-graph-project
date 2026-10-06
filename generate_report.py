@@ -29,7 +29,7 @@ def main():
         "--date",
         default=None,
         help="Report date dd-mm-yyyy (shown on slides; also used as the Planned "
-        "Completion cutoff for evaluation/implementation pending on slides 5–6, "
+        "Completion cutoff (Friday of this date's week) for the planned evaluation/implementation slides 5–6, "
         "and to derive the fiscal quarter and heading week). "
         "Defaults to today's date if omitted.",
     )

@@ -16,6 +16,7 @@ from pathlib import Path
 from pptx import Presentation
 
 from wsr.constants import TRACKER_SHEET
+from wsr.fiscal import friday_of_week
 from wsr.pending import pending_items
 from wsr.report.models import ChartAssets, ReportTiming, ScrumWorkbook
 from wsr.report_data import summary_table_rows
@@ -51,20 +52,27 @@ def build_presentation(
     closing_image: Path | None,
     log: RunLog,
 ) -> Presentation:
-    log.info("Selecting pending evaluation / implementation rows…")
+    log.info("Selecting planned evaluation / implementation rows…")
+    # Slides 5-6 include Planned Completion Dates through the Friday of the
+    # current (ISO) week, i.e. the same week shown in the slide heading.
+    planned_cutoff = friday_of_week(timing.report_date)
+    log.info(
+        f"Planned-closure cutoff: {planned_cutoff:%d-%m-%Y} "
+        f"(Friday of the week of {timing.report_date})"
+    )
     eval_pending = pending_items(
         workbook.visibility,
         workbook.tracker_rows,
         mode="evaluation",
         pending_week=timing.pending_week,
-        cutoff_date=timing.report_date,
+        cutoff_date=planned_cutoff,
     )
     impl_pending = pending_items(
         workbook.visibility,
         workbook.tracker_rows,
         mode="implementation",
         pending_week=timing.pending_week,
-        cutoff_date=timing.report_date,
+        cutoff_date=planned_cutoff,
     )
     log.info(f"Pending eval rows: {len(eval_pending)}; impl rows: {len(impl_pending)}")
 

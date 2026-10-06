@@ -36,6 +36,17 @@ def last_friday(value) -> pd.Timestamp:
     return ts - pd.Timedelta(days=days_since_friday)
 
 
+def friday_of_week(value) -> pd.Timestamp:
+    """Friday of the ISO week (Mon-Sun) that contains the report / system date.
+
+    Unlike ``last_friday`` this looks forward: on a Monday it returns the coming
+    Friday, so it matches the week number used in slide headings.
+    """
+    ts = pd.Timestamp(parse_report_date(value)).normalize()
+    monday = ts - pd.Timedelta(days=ts.weekday())
+    return monday + pd.Timedelta(days=4)
+
+
 def fiscal_quarter_and_year(value) -> tuple[int, int]:
     dt = parse_report_date(value)
     month = int(dt.month)

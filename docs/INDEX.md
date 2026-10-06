@@ -129,7 +129,7 @@ wsr/
 Examples already encoded:
 
 - **Pending (slides 5–6):** `PRCRState` Evaluate/Implement, `At Risk` = On Track,
-  planned completion ≤ report date.
+  planned completion ≤ Friday of the report date's week.
 - **Summary (slide 4):** baseline totals (e.g. 130 / 50 / 80); some labels left blank
   by design.
 - **DDP (slide 7):** headers only — filled manually in PowerPoint (row builder in

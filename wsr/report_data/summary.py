@@ -201,10 +201,15 @@ def summary_table_rows(
     ddp_count = ddp_testing_count(tracker)
     ecm_count = ecm_testing_count(tracker)
 
+    csar = csar_count(tracker)
+    core2 = core2_count(tracker)
+    total_planned_activity = csar + core2 + ecm_count + ddp_count
+
     return [
         ("Total DCR's planned", total_value),
-        ("CSAR", str(csar_count(tracker))),
-        ("Core2", str(core2_count(tracker))),
+        ("Total Planned Activity", str(total_planned_activity)),
+        ("CSAR", str(csar)),
+        ("Core2", str(core2)),
         ("ECM Testing", str(ecm_count)),
         ("DDP Testing", str(ddp_count)),
         ("DCR's Planned for Evaluation", eval_planned),

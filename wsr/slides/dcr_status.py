@@ -8,6 +8,7 @@ from pptx import Presentation
 from pptx.util import Inches, Pt
 
 from wsr.constants import (
+    DCR_CHART_BOTTOM_LIMIT,
     DCR_CHART_HEIGHT,
     DCR_CHART_LEFT,
     DCR_CHART_WIDTH,
@@ -28,6 +29,18 @@ def dcr_status_slide_title(report_date: str) -> str:
     return f"DCR Status {quarter} - CSAR (Non-STLA) & Core 2 program - PFS"
 
 
+def _add_chart_picture(slide, image: Path, top_in: float) -> None:
+    """Place a chart by height (keeps aspect ratio), centred, above the footer line."""
+    height_in = min(DCR_CHART_HEIGHT, DCR_CHART_BOTTOM_LIMIT - top_in)
+    picture = slide.shapes.add_picture(str(image), Inches(DCR_CHART_LEFT), Inches(top_in), height=Inches(height_in))
+    max_width = Inches(DCR_CHART_WIDTH)
+    if picture.width > max_width:
+        scale = max_width / picture.width
+        picture.width = int(picture.width * scale)
+        picture.height = int(picture.height * scale)
+    picture.left = Inches(DCR_CHART_LEFT) + int((max_width - picture.width) / 2)
+
+
 def add_dcr_status_slide(
     prs: Presentation,
     report_date: str,
@@ -44,20 +57,8 @@ def add_dcr_status_slide(
     )
     raise_slide_title(slide, top_in=DCR_TITLE_TOP)
 
-    slide.shapes.add_picture(
-        str(eval_chart),
-        Inches(DCR_CHART_LEFT),
-        Inches(DCR_EVAL_TOP),
-        width=Inches(DCR_CHART_WIDTH),
-        height=Inches(DCR_CHART_HEIGHT),
-    )
-    slide.shapes.add_picture(
-        str(impl_chart),
-        Inches(DCR_CHART_LEFT),
-        Inches(DCR_IMPL_TOP),
-        width=Inches(DCR_CHART_WIDTH),
-        height=Inches(DCR_CHART_HEIGHT),
-    )
+    _add_chart_picture(slide, eval_chart, DCR_EVAL_TOP)
+    _add_chart_picture(slide, impl_chart, DCR_IMPL_TOP)
 
     add_summary_key_value_table(
         slide,
