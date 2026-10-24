@@ -14,6 +14,7 @@ from wsr.graph import (
     COL_CUMULATIVE_BASELINE,
     COL_CUMULATIVE_REVISED,
     COL_DRB,
+    COL_IMPL_IN_PROGRESS,
     COL_IN_PROGRESS,
     COL_PCT_ACTUAL,
     COL_PCT_CONFIDENCE,
@@ -278,7 +279,7 @@ def save_implementation_chart(
     return _plot_section(
         section,
         title=f"{quarter_short} Implementation",
-        progress_col=COL_IN_PROGRESS,
+        progress_col=COL_IMPL_IN_PROGRESS,
         progress_label="Impl In Progress",
         output_path=output_path,
         report_date=report_date,

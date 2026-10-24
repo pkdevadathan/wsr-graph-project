@@ -18,6 +18,7 @@ COL_CUMULATIVE_REVISED = "Cumulative Revised basline plan"
 COL_COMPLETED = "Cumulative (Completed)"
 COL_REJECTED = "Cumulative Rejected / Transferred/ Moved to next quarter"
 COL_IN_PROGRESS = "Eval In Progress"
+COL_IMPL_IN_PROGRESS = "Impl In Progress"
 COL_DRB = "DRB /l2 Reviews & Rework  in progress"
 COL_PCT_CONFIDENCE = "% Completion Confidence - Overall"
 COL_PCT_ACTUAL = "% Actual weekly completion wr.t  revised Baseline"
@@ -207,6 +208,7 @@ def _coerce_graph_numeric(section: pd.DataFrame) -> pd.DataFrame:
         COL_COMPLETED,
         COL_REJECTED,
         COL_IN_PROGRESS,
+        COL_IMPL_IN_PROGRESS,
         COL_DRB,
         COL_PCT_CONFIDENCE,
         COL_PCT_ACTUAL,
